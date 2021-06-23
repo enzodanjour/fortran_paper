@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
       title: 'Fortran paper',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -28,13 +27,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  String _text = '';
+  String _fortran = '';
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +41,36 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Saída normal:',
             ),
             Text(
-              '$_counter',
+              '$_text',
               style: Theme.of(context).textTheme.headline4,
             ),
+            Text(
+              'Saída Fortran:',
+            ),
+            Text(
+              '$_fortran',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: TextField(
+                onChanged: (text) {
+                  setState(() {
+                    _text = text.toUpperCase();
+                  });
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Digite sua entrada',
+                ),
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
